@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Excellence Academy</title>
+<style>
+  :root {
+    --primary-blue: #007bff;
+    --white: #f8f8f8;
+    --light-gray-bg: #f8f9fa;
+    --text-dark: #0d1822;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  /* RESET */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  /* HEADER NAVIGATION */
+  header {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px var(--shadow-color);
+  }
+  .navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--white);
+    user-select: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-links button {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  .nav-links button:hover,
+  .nav-links button:focus {
+    background-color: rgba(255 255 255 / 0.2);
+    outline: none;
+  }
+  /* MAIN CONTENT AREA */
+  main {
+    flex-grow: 1;
+    max-width: 1100px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 1.5rem;
+  }
+  section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  section.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  /* GENERAL HEADINGS */
+  h1, h2, h3 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  p {
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+  /* BUTTONS */
+  .btn {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0 123 255 / 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    user-select: none;
+    text-align: center;
+  }
+  .btn:hover,
+  .btn:focus {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    outline: none;
+  }
+  .btn-group {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  /* HERO SECTION */
+  #home .hero {
+    text-align: center;
+    background: var(--white);
+    padding: 3rem 1rem 4rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    max-width: 900px;
+    margin: 0 auto 3rem;
+  }
+  #home .hero p {
+    font-size: 1.25rem;
+  }
+  /* CRITERIA SECTION */
+  #home .criteria {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #home .criteria-card {
+    flex: 1 1 250px;
+    background-color: var(--white);
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    text-align: center;
+  }
+  #home .criteria-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  /* COURSES */
+  #home .course-list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #home .course-card {
+    flex: 1 1 140px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    user-select: none;
+    cursor: default;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  #home .course-card:hover,
+  #home .course-card:focus-within {
+    box-shadow: 0 12px 20px rgba(0 123 255 / 0.5);
+    transform: translateY(-5px);
+  }
+  /* SPECIALTIES */
+  #home .specialty-cards {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #home .specialty-card {
+    flex: 1 1 180px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    cursor: default;
+    user-select: none;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  #home .specialty-card:hover,
+  #home .specialty-card:focus-within {
+    box-shadow: 0 12px 20px rgba(0 123 255 / 0.5);
+    transform: translateY(-5px);
+  }
+  /* VIDEO SECTION */
+  #home .video-section {
+    margin-top: 3rem;
+  }
+  #home .video-thumbnails {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #home .video-card {
+    flex: 1 1 300px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  #home .video-card:hover,
+  #home .video-card:focus-within {
+    box-shadow: 0 12px 20px rgba(0 123 255 / 0.5);
+    transform: translateY(-5px);
+  }
+  #home .video-card iframe {
+    width: 100%;
+    height: 180px;
+    border: none;
+    border-radius: 16px 16px 0 0;
+  }
+  /* TOPPERS */
+  #home .topper-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+  #home .topper-card {
+    flex: 1 1 220px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    padding: 1.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    user-select: none;
+    cursor: default;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  #home .topper-card:hover,
+  #home .topper-card:focus-within {
+    box-shadow: 0 12px 20px rgba(0 123 255 / 0.5);
+    transform: translateY(-5px);
+  }
+  /* CONTACT FORM */
+  #home form {
+    background-color: var(--white);
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 3rem auto 0;
+  }
+  #home input[type="text"],
+  #home input[type="email"],
+  #home input[type="tel"],
+  #home textarea {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ede7e7;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    resize: vertical;
+  }
+  #home textarea {
+    min-height: 120px;
+  }
+  #home input:focus,
+  #home textarea:focus {
+    outline: 2px solid var(--primary-blue);
+    border-color: var(--primary-blue);
+  }
+  #home button[type="submit"] {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    font-weight: 600;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #home button[type="submit"]:hover,
+  #home button[type="submit"]:focus {
+    background-color: #0056b3;
+    outline: none;
+  }
+  /* GENERIC PAGE STYLE FOR ABOUT, COURSES, TOPPERS, LOGIN */
+  section .page-content {
+    background: var(--white);
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+  }
+  /* ABOUT PAGE */
+  #about .page-content h1 {
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+  }
+  #about .page-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  /* COURSES PAGE */
+  #courses .page-content h1 {
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+  }
+  #courses .page-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  /* TOPPERS PAGE */
+  #toppers .page-content h1 {
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+  }
+  #toppers .topper-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  #toppers .topper-card {
+    flex: 1 1 220px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    padding: 1.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    user-select: none;
+    cursor: default;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  #toppers .topper-card:hover,
+  #toppers .topper-card:focus-within {
+    box-shadow: 0 12px 20px rgba(0 123 255 / 0.5);
+    transform: translateY(-5px);
+  }
+  /* LOGIN PAGE */
+  #login .page-content {
+    max-width: 400px;
+  }
+  #login .page-content h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  #login form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #login input[type="text"],
+  #login input[type="password"] {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+  }
+  #login input:focus {
+    outline: 2px solid var(--primary-blue);
+    border-color: var(--primary-blue);
+  }
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    font-weight: 500;
+    margin-top: auto;
+  }
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .criteria,
+    #home .criteria-table,
+    #home .course-list,
+    #home .specialty-cards,
+    #home .video-thumbnails,
+    #home .topper-grid,
+    #toppers .topper-list,
+    .nav-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-links {
+      background-color: var(--primary-blue);
+      padding: 1rem 1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav class="navbar" aria-label="Primary Navigation">
+    <div class="logo" tabindex="0">Excellence Academy</div>
+    <ul class="nav-links" role="menubar">
+      <li role="none"><button role="menuitem" aria-controls="home" aria-selected="true" class="nav-button active">Home</button></li>
+      <li role="none"><button role="menuitem" aria-controls="about" class="nav-button">About Us</button></li>
+      <li role="none"><button role="menuitem" aria-controls="courses" class="nav-button">Courses</button></li>
+      <li role="none"><button role="menuitem" aria-controls="toppers" class="nav-button">Toppers</button></li>
+      <li role="none"><button role="menuitem" aria-controls="contact" class="nav-button">Contact</button></li>
+      <li role="none"><button role="menuitem" aria-controls="login" class="nav-button">Login</button></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <!-- HOME SECTION -->
+  <section id="home" class="active" tabindex="0" aria-label="Home">
+    <article class="hero" aria-label="Hero Section">
+      <h1>Shape Your Future with Excellence!</h1>
+      <p>Join us to unlock your potential and achieve your dreams.</p>
+      <div class="cta-buttons">
+        <a href="javascript:void(0)" class="btn" data-target="courses">View Courses</a>
+        <a href="javascript:void(0)" class="btn" data-target="contact">Contact Now</a>
+      </div>
+    </article>
+
+    <article class="criteria" aria-label="Age, Standard, and Stream Criteria">
+      <h2>Age & Standard Criteria</h2>
+      <div class="criteria-card" role="region" aria-labelledby="age-group">
+        <h3 id="age-group">Age Groups</h3>
+        <ul>
+          <li>8–10</li>
+          <li>11–14</li>
+          <li>15–18</li>
+        </ul>
+      </div>
+      <div class="criteria-card" role="region" aria-labelledby="standards">
+        <h3 id="standards">Standards</h3>
+        <ul><li>5th to 12th</li></ul>
+      </div>
+      <div class="criteria-card" role="region" aria-labelledby="streams">
+        <h3 id="streams">Streams</h3>
+        <ul>
+          <li>SSC</li>
+          <li>CBSE</li>
+          <li>HSC</li>
+          <li>NEET</li>
+          <li>JEE</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="courses" aria-label="Our Courses">
+      <h2>Our Courses</h2>
+      <div class="course-list" role="list">
+        <div role="listitem" tabindex="0" class="course-card">Math</div>
+        <div role="listitem" tabindex="0" class="course-card">Science</div>
+        <div role="listitem" tabindex="0" class="course-card">English</div>
+        <div role="listitem" tabindex="0" class="course-card">Physics</div>
+        <div role="listitem" tabindex="0" class="course-card">Chemistry</div>
+        <div role="listitem" tabindex="0" class="course-card">Biology</div>
+      </div>
+    </article>
+
+    <article class="specialties" aria-label="Our Specialties">
+      <h2>Our Specialties</h2>
+      <div class="specialty-cards" role="list">
+        <div role="listitem" tabindex="0" class="specialty-card">Experienced Faculty</div>
+        <div role="listitem" tabindex="0" class="specialty-card">Weekly Tests</div>
+        <div role="listitem" tabindex="0" class="specialty-card">Doubt Solving Sessions</div>
+        <div role="listitem" tabindex="0" class="specialty-card">Daily Practice Sheets</div>
+        <div role="listitem" tabindex="0" class="specialty-card">Parent-Teacher Reports</div>
+        <div role="listitem" tabindex="0" class="specialty-card">Motivation Sessions</div>
+      </div>
+    </article>
+
+    <article class="video-section" aria-label="Recorded Video Section">
+      <h2>Watch Anytime, Learn Anytime</h2>
+      <div class="video-thumbnails" role="list">
+        <div role="listitem" tabindex="0" class="video-card" aria-label="Video 1">
+          <iframe src="https://www.youtube.com/watch?v=KodrlgHPs20" title="Sample Video 1" allowfullscreen></iframe>
+        </div>
+        <div role="listitem" tabindex="0" class="video-card" aria-label="Video 2">
+          <iframe src="https://www.youtube.com/embed/tVj0ZTS4WF4" title="Sample Video 2" allowfullscreen></iframe>
+        </div>
+        <div role="listitem" tabindex="0" class="video-card" aria-label="Video 3">
+          <iframe src="https://www.youtube.com/embed/MtN1YnoL46Q" title="Sample Video 3" allowfullscreen></iframe>
+        </div>
+      </div>
+    </article>
+
+    <article class="toppers" aria-label="Topper List">
+      <h2>Topper List</h2>
+      <div class="topper-grid" role="list">
+        <div role="listitem" tabindex="0" class="topper-card" aria-label="Topper John Doe">
+          <strong>Name:</strong> suyash sharma<br />
+          <strong>Rank:</strong> 1<br />
+          <strong>Standard:</strong> 10<br />
+          <strong>Year:</strong> 2023
+        </div>
+        <div role="listitem" tabindex="0" class="topper-card" aria-label="Topper Jane Smith">
+          <strong>Name:</strong>rohit singh<br />
+          <strong>Rank:</strong> 2<br />
+          <strong>Standard:</strong> 12<br />
+          <strong>Year:</strong> 2023
+        </div>
+      </div>
+    </article>
+
+    <article class="contact" aria-label="Contact Us Inquiry Form">
+      <h2>Contact Us</h2>
+      <form id="contact-form" novalidate>
+        <input type="text" name="name" placeholder="Name" required aria-required="true" />
+        <input type="tel" name="phone" placeholder="Phone" required aria-required="true" pattern="^\+?[0-9\s\-]{7,15}$" aria-describedby="phone-desc" />
+        <small id="phone-desc" style="display:none;">Phone number should be 7 to 15 digits, can include +, spaces or dashes.</small>
+        <input type="email" name="email" placeholder="Email" required aria-required="true" />
+        <input type="text" name="class" placeholder="Class" required aria-required="true" />
+        <textarea name="message" placeholder="Message" required aria-required="true"></textarea>
+        <button type="submit" class="btn" aria-label="Submit Contact Form">Submit</button>
+      </form>
+      <p id="form-message" aria-live="polite" style="margin-top:1rem; font-weight:600; color: var(--primary-blue);"></p>
+    </article>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" tabindex="0" aria-label="About Us">
+    <article class="page-content">
+      <h1>About Excellence Academy</h1>
+      <p>Our mission is to provide quality education and empower students to achieve their goals.</p>
+      <h2>Our Vision</h2>
+      <p>To be a leading coaching center that shapes the future of students.</p>
+      <h2>Founder</h2>
+      <p>shreyash shinde, an experienced educator with a passion for teaching.</p>
+      <h2>Testimonials</h2>
+      <blockquote>"Excellence Academy changed my life!" - Student A</blockquote>
+      <blockquote>"Top notch teachers and support." - Student B</blockquote>
+    </article>
+  </section>
+
+  <!-- COURSES SECTION -->
+  <section id="courses" tabindex="0" aria-label="Courses">
+    <article class="page-content">
+      <h1>Our Courses</h1>
+      <p>Explore our wide range of courses tailored for different standards and subjects.</p>
+      <h2>Math</h2>
+      <p>Comprehensive math coaching from basics to advanced concepts.</p>
+      <h2>Science</h2>
+      <p>Strong foundational science courses including Physics, Chemistry, and Biology.</p>
+      <h2>English</h2>
+      <p>Improve your communication skills with our English courses.</p>
+      <!-- More course details can be added here -->
+    </article>
+  </section>
+
+  <!-- TOPPERS SECTION -->
+  <section id="toppers" tabindex="0" aria-label="Toppers">
+    <article class="page-content">
+      <h1>Topper List</h1>
+      <p>Meet our outstanding students who have achieved remarkable results.</p>
+      <div class="topper-list" role="list">
+        <div role="listitem" tabindex="0" class="topper-card" aria-label="Topper John Doe">
+          <strong>Name:</strong> suyash sharma<br />
+          <strong>Rank:</strong> 1<br />
+          <strong>Standard:</strong> 10<br />
+          <strong>Year:</strong> 2023
+        </div>
+        <div role="listitem" tabindex="0" class="topper-card" aria-label="Topper Jane Smith">
+          <strong>Name:</strong>rohit singh<br />
+          <strong>Rank:</strong> 2<br />
+          <strong>Standard:</strong> 12<br />
+          <strong>Year:</strong> 2023
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- CONTACT SECTION (Duplicate for navigation) -->
+  <section id="contact" tabindex="0" aria-label="Contact Us">
+    <article class="page-content">
+      <h1>Contact Us</h1>
+      <form id="contact-form-2" novalidate>
+        <input type="text" name="name" placeholder="Name" required aria-required="true" />
+        <input type="tel" name="phone" placeholder="Phone" required aria-required="true" pattern="^\+?[0-9\s\-]{7,15}$" aria-describedby="phone-desc-2" />
+        <small id="phone-desc-2" style="display:none;">Phone number should be 7 to 15 digits, can include +, spaces or dashes.</small>
+        <input type="email" name="email" placeholder="Email" required aria-required="true" />
+        <input type="text" name="class" placeholder="Class" required aria-required="true" />
+        <textarea name="message" placeholder="Message" required aria-required="true"></textarea>
+        <button type="submit" class="btn" aria-label="Submit Contact Form">Submit</button>
+      </form>
+      <p id="form-message-2" aria-live="polite" style="margin-top:1rem; font-weight:600; color: var(--primary-blue);"></p>
+    </article>
+  </section>
+
+  <!-- LOGIN SECTION -->
+  <section id="login" tabindex="0" aria-label="Login">
+    <article class="page-content">
+      <h1>Login</h1>
+      <form id="login-form" novalidate>
+        <input type="text" name="username" placeholder="Username" required aria-required="true" />
+        <input type="password" name="password" placeholder="Password" required aria-required="true" />
+        <button type="submit" class="btn" aria-label="Login to your account">Login</button>
+      </form>
+      <p id="login-message" aria-live="polite" style="margin-top:1rem; font-weight:600; color: var(--primary-blue);"></p>
+    </article>
+  </section>
+</main>
+<footer>
+  
+</footer>
+<script>
+(function(){
+  'use strict';
+  const navButtons = document.querySelectorAll('.nav-button');
+  const sections = document.querySelectorAll('main section');
+  const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
+  function deactivateAll() {
+    navButtons.forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-selected', 'false');
+    });
+    sections.forEach(sec => {
+      sec.classList.remove('active');
+      sec.setAttribute('hidden', '');
+      sec.setAttribute('aria-hidden', 'true');
+      sec.tabIndex = -1;
+    });
+  }
+  function activateSection(id) {
+    deactivateAll();
+    const btn = Array.from(navButtons).find(b => b.getAttribute('aria-controls') === id);
+    if(btn) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+    const sec = document.getElementById(id);
+    if(sec) {
+      sec.classList.add('active');
+      sec.removeAttribute('hidden');
+      sec.setAttribute('aria-hidden', 'false');
+      sec.tabIndex = 0;
+      sec.focus();
+    }
+  }
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('aria-controls');
+      activateSection(target);
+    });
+  });
+  ctaButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = btn.getAttribute('data-target');
+      if(target) activateSection(target);
+    });
+  });
+  // Default active section
+  activateSection('home');
+
+  // Contact form submissions (dummy handlers)
+  const contactForms = [document.getElementById('contact-form'), document.getElementById('contact-form-2')];
+  contactForms.forEach((form, idx) => {
+    const msgId = idx === 0 ? 'form-message' : 'form-message-2';
+    const msgElem = document.getElementById(msgId);
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      // Simple validation check (HTML5 validation handles most)
+      if(form.checkValidity()) {
+        msgElem.textContent = 'Thank you for contacting us! We will get back to you soon.';
+        form.reset();
+      } else {
+        msgElem.textContent = 'Please fill all required fields correctly.';
+      }
+    });
+  });
+
+  // Login form dummy handler
+  const loginForm = document.getElementById('login-form');
+  const loginMsg = document.getElementById('login-message');
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if(loginForm.checkValidity()) {
+      loginMsg.textContent = 'Login successful (simulation). Welcome!';
+      loginForm.reset();
+    } else {
+      loginMsg.textContent = 'Please enter both username and password.';
+    }
+  });
+})();
+</script>
+</body>
+</html>
+
